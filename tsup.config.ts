@@ -15,5 +15,5 @@ export default defineConfig({
   splitting: false,
   treeshake: true,
   minify: false,
-  external: ["react", "react-dom", "@page-speed/img"],
+  external: ["react", "react-dom", "@page-speed/img", "@page-speed/pressable"],
 });

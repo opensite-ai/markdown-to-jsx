@@ -1,6 +1,6 @@
 {
   "name": "@page-speed/markdown-to-jsx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Performance-optimized, tree-shakable React markdown renderer for DashTrack ecosystem",
   "license": "MIT",
   "private": false,
@@ -60,12 +60,16 @@
     "markdown-to-jsx": "^7.5.0"
   },
   "peerDependencies": {
-    "@page-speed/img": ">=0.1.0",
+    "@page-speed/img": "0.4.6",
+    "@page-speed/pressable": ">=0.0.1",
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
   },
   "peerDependenciesMeta": {
     "@page-speed/img": {
+      "optional": true
+    },
+    "@page-speed/pressable": {
       "optional": true
     }
   },

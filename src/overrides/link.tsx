@@ -7,16 +7,48 @@ export interface LinkProps
   children?: React.ReactNode;
 }
 
+// Try to load Pressable at module level (optional peer dependency)
+let Pressable: any = null;
+try {
+  const pressableModule = require("@page-speed/pressable");
+  Pressable = pressableModule.Pressable;
+} catch {
+  // Pressable not available - will use fallback
+}
+
 /**
- * Safe link component with automatic external link handling
+ * Safe link component with automatic external link handling and URL normalization.
+ * Uses @page-speed/pressable when available for enhanced link functionality including:
+ * - Phone number normalization (tel: links)
+ * - Email normalization (mailto: links)
+ * - Internal/external link detection
+ * - Automatic target and rel attributes
  */
 export function Link({ href, children, ...props }: LinkProps) {
   // Sanitize the URL
   const safeHref = href ? sanitizeUrl(href) : "#";
 
-  // Determine if this is an external link
+  // Check if href is dangerous
+  if (isDangerousUrl(safeHref)) {
+    return <span {...props}>{children}</span>;
+  }
+
+  // Don't use Pressable for placeholder links ("#") - render basic link
+  const isPlaceholder = safeHref === "#";
+
+  // Use Pressable if available (provides phone/email normalization and enhanced navigation)
+  // but not for placeholder links which should remain as-is
+  if (Pressable && !isPlaceholder) {
+    return (
+      <Pressable href={safeHref} {...props}>
+        {children}
+      </Pressable>
+    );
+  }
+
+  // Fallback to basic link logic if Pressable not available
   const isExternal = React.useMemo(() => {
-    if (!href || isDangerousUrl(href)) return false;
+    if (!href) return false;
 
     try {
       // Check if it's an absolute URL

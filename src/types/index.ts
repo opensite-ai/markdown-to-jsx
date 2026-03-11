@@ -4,6 +4,7 @@
 
 export type {
   OverrideMap,
+  MarkdownStylesMap,
   MarkdownOptions,
   MarkdownProps,
   UseMarkdownResult,

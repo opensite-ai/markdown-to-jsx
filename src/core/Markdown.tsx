@@ -23,11 +23,34 @@ import { compileMarkdown } from "./MarkdownCompiler";
  *   # Custom Heading
  * </Markdown>
  * ```
+ *
+ * @example With custom styles
+ * ```tsx
+ * <Markdown
+ *   markdownStyles={{
+ *     h2: 'text-2xl md:text-4xl text-primary',
+ *     img: 'shadow-lg rounded-2xl',
+ *     iframe: 'aspect-video w-full rounded-2xl'
+ *   }}
+ * >
+ *   ## Styled Heading
+ *   ![Image](url)
+ * </Markdown>
+ * ```
+ *
+ * @example With heading IDs
+ * ```tsx
+ * <Markdown>
+ *   ## Introduction {#intro}
+ *   Content here...
+ * </Markdown>
+ * ```
  */
 export function Markdown({
   children,
   className,
   overrides,
+  markdownStyles,
   useDefaults = true,
   wrapper = "div",
   ...options
@@ -37,11 +60,12 @@ export function Markdown({
     () =>
       compileMarkdown(children, {
         overrides,
+        markdownStyles,
         useDefaults,
         wrapper,
         ...options,
       }),
-    [children, overrides, useDefaults, wrapper, options]
+    [children, overrides, markdownStyles, useDefaults, wrapper, options]
   );
 
   // Apply className if provided and wrapper is a string and result is a ReactElement

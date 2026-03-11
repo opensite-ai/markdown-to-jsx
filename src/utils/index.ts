@@ -15,3 +15,8 @@ export {
   sanitizeAttributes,
   getDefaultSanitizationConfig,
 } from "./sanitize";
+
+export {
+  parseHeadingId,
+  preprocessHeadingIds,
+} from "./parse-heading-id";

@@ -300,3 +300,128 @@ See [BUILD_GUIDE.md](./BUILD_GUIDE.md) for development instructions.
 ## Repository
 
 https://github.com/opensite-ai/markdown-to-jsx
+
+## Advanced Features
+
+### Custom Heading IDs with {#id} Syntax
+
+The library supports custom heading IDs using the `{#id}` syntax, which is commonly used by AI LLMs and extended markdown parsers:
+
+```tsx
+<Markdown>
+  {`
+## Introduction {#intro}
+
+Content here... can link to [Introduction](#intro)
+
+## Getting Started {#getting-started}
+
+More content...
+  `}
+</Markdown>
+```
+
+**Output:**
+```html
+<h2 id="intro">Introduction</h2>
+<p>Content here... can link to <a href="#intro">Introduction</a></p>
+<h2 id="getting-started">Getting Started</h2>
+```
+
+**Features:**
+- ✅ AI-friendly syntax - matches patterns used by Claude, GPT, and other LLMs
+- ✅ Perfect for table of contents and anchor links
+- ✅ Falls back to auto-generated IDs when {#id} not specified
+- ✅ Works seamlessly with section navigation
+
+### Custom Styling with markdownStyles
+
+Apply custom Tailwind classes to markdown elements without creating custom components:
+
+```tsx
+<Markdown
+  markdownStyles={{
+    h2: 'text-2xl md:text-4xl font-bold text-primary',
+    h3: 'text-xl md:text-2xl font-semibold',
+    img: 'shadow-lg rounded-2xl aspect-video',
+    iframe: 'aspect-video w-full rounded-2xl shadow-lg my-12',
+    p: 'text-base md:text-lg leading-relaxed',
+    blockquote: 'border-l-4 border-primary pl-4 italic',
+  }}
+>
+  {markdownContent}
+</Markdown>
+```
+
+**Supported Elements:**
+- Headings: `h1`, `h2`, `h3`, `h4`, `h5`, `h6`
+- Text: `p`, `blockquote`, `code`, `pre`
+- Media: `img`, `iframe`
+- Lists: `ul`, `ol`, `li`
+- Tables: `table`, `thead`, `tbody`, `tr`, `th`, `td`
+- Links: `a`
+
+### Iframe Support
+
+The library now includes built-in iframe support for embeds (YouTube, Twitter, Spotify, etc.):
+
+```tsx
+<Markdown
+  markdownStyles={{
+    iframe: 'aspect-video w-full rounded-lg shadow-md my-8'
+  }}
+>
+  {`
+## Video Tutorial
+
+<iframe 
+  src="https://www.youtube.com/embed/VIDEO_ID" 
+  title="Tutorial Video"
+></iframe>
+
+Content continues...
+  `}
+</Markdown>
+```
+
+**Default iframe attributes:**
+- `loading="lazy"` - Lazy loading for performance
+- `allowFullScreen` - Enables fullscreen mode
+- Security attributes automatically applied
+
+### Combining Features
+
+All features work together seamlessly:
+
+```tsx
+<Markdown
+  markdownStyles={{
+    h2: 'text-3xl font-bold text-primary mb-6',
+    img: 'rounded-xl shadow-lg',
+    iframe: 'aspect-video w-full rounded-2xl my-12',
+  }}
+  overrides={{
+    a: CustomLinkComponent, // Use custom component for links
+  }}
+>
+  {`
+## Video Section {#videos}
+
+Watch our tutorial below:
+
+<iframe src="https://youtube.com/embed/abc123"></iframe>
+
+![Screenshot](https://example.com/img.jpg)
+
+For questions, email us at support@example.com or call (555) 123-4567.
+  `}
+</Markdown>
+```
+
+**What happens:**
+- Heading gets custom ID `id="videos"` + custom styling
+- Iframe gets custom className + lazy loading
+- Image uses `@page-speed/img` with responsive formats + custom styling
+- Email link auto-converts to `mailto:support@example.com`
+- Phone link auto-converts to `tel:+15551234567`
+

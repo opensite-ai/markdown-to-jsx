@@ -7,6 +7,21 @@ import type { ElementType, ReactNode } from "react";
 export type OverrideMap = Record<string, ElementType>;
 
 /**
+ * Map of element names to custom className strings
+ * Supports all HTML elements (h1-h6, p, img, iframe, etc.)
+ *
+ * @example
+ * ```tsx
+ * markdownStyles={{
+ *   h2: 'text-2xl md:text-4xl text-primary',
+ *   img: 'shadow-lg rounded-2xl',
+ *   iframe: 'aspect-video w-full rounded-2xl shadow-lg my-12'
+ * }}
+ * ```
+ */
+export type MarkdownStylesMap = Record<string, string>;
+
+/**
  * Configuration options for markdown rendering
  */
 export interface MarkdownOptions extends Omit<MarkdownToJSX.Options, "overrides" | "wrapper"> {
@@ -14,6 +29,21 @@ export interface MarkdownOptions extends Omit<MarkdownToJSX.Options, "overrides"
    * Custom component overrides
    */
   overrides?: OverrideMap;
+
+  /**
+   * Custom className mappings for markdown elements
+   * Simplifies styling without creating custom components
+   *
+   * @example
+   * ```tsx
+   * markdownStyles={{
+   *   h2: 'text-3xl font-bold',
+   *   img: 'rounded-lg shadow-md',
+   *   iframe: 'aspect-video w-full'
+   * }}
+   * ```
+   */
+  markdownStyles?: MarkdownStylesMap;
 
   /**
    * Whether to use default ecosystem overrides

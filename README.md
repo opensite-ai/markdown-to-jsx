@@ -1,6 +1,14 @@
 # @page-speed/markdown-to-jsx
 
-A performance-optimized, tree-shakable React markdown renderer for the DashTrack ecosystem. Wraps the lightweight `markdown-to-jsx` library (~6KB gzipped) with ecosystem-specific defaults: pre-configured overrides for `@page-speed/img`, sanitized link handling, prose-aware typography, and zero-CLS rendering.
+## A performance-optimized, tree-shakable React markdown renderer for the DashTrack ecosystem. Wraps the lightweight `markdown-to-jsx` library (~6KB gzipped) with ecosystem-specific defaults: pre-configured overrides for `@page-speed/img`, sanitized link handling, prose-aware typography, and zero-CLS rendering. Used by the UI component library for the [OpenSite Semantic Site Builder](https://opensite.ai) platform.
+
+![Opensite Semantic UI](https://octane.cdn.ing/api/v1/images/transform?url=https://cdn.ing/assets/i/r/293694/1ptcuwjb1sxb2pww0g4lcfpevmtb/banner.png&f=webp)
+
+<br />
+
+[![npm version](https://img.shields.io/npm/v/@page-speed/markdown-to-jsx?style=for-the-badge)](https://www.npmjs.com/package/@page-speed/markdown-to-jsx)
+[![npm downloads](https://img.shields.io/npm/dm/@page-speed/markdown-to-jsx?style=for-the-badge)](https://www.npmjs.com/package/@page-speed/markdown-to-jsx)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue?style=for-the-badge)](./tsconfig.json)
 
 ## Features
 

@@ -50,6 +50,7 @@ export type {
   MarkdownOptions,
   MarkdownProps,
   OverrideMap,
+  MarkdownStylesMap,
   UseMarkdownResult,
 } from "./types";
 

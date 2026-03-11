@@ -1135,3 +1135,83 @@ Current version: **0.0.3**
 ---
 
 **For AI Agents**: This library is specifically optimized for AI-generated content. Always use the `{#id}` syntax for heading IDs (not `<section>` tags), apply `markdownStyles` for consistent styling, and leverage automatic phone/email normalization. All features are tested and production-ready for AI workflows.
+
+## OptixFlow Image Optimization
+
+### Automatic Configuration Passing
+
+The library now supports passing `optixFlowConfig` directly to the Markdown component, which automatically configures the `@page-speed/img` component:
+
+```tsx
+<Markdown
+  optixFlowConfig={{
+    quality: 85,
+    format: 'webp',
+    sizes: {
+      sm: 640,
+      md: 1024,
+      lg: 1920,
+    }
+  }}
+  overrides={{
+    img: Img,  // No wrapper needed!
+    a: Pressable,
+  }}
+>
+  {markdownContent}
+</Markdown>
+```
+
+**Before (v0.0.3):**
+```tsx
+// Required wrapper function to pass optixFlowConfig
+<Markdown
+  overrides={{
+    img: (props) => <Img {...props} optixFlowConfig={config} />,
+    a: Pressable,
+  }}
+>
+  {content}
+</Markdown>
+```
+
+**After (v0.0.4):**
+```tsx
+// Clean, simple - optixFlowConfig passed via context
+<Markdown
+  optixFlowConfig={config}
+  overrides={{
+    img: Img,
+    a: Pressable,
+  }}
+>
+  {content}
+</Markdown>
+```
+
+### Benefits
+
+✅ **markdownStyles Work Properly**: Image className from markdownStyles now applies correctly
+✅ **Cleaner Code**: No wrapper functions needed
+✅ **Consistent API**: Same pattern as Pressable
+✅ **Context-Based**: OptixFlow config shared via React Context
+
+### Usage in DashTrack Blocks
+
+```tsx
+<ArticleCompactToc
+  renderMode="markdown"
+  markdownString={content}
+  optixFlowConfig={{
+    quality: 85,
+    format: 'webp'
+  }}
+  markdownStyles={{
+    h2: 'text-3xl font-bold',
+    img: 'rounded-xl shadow-xl',  // Now works correctly!
+    iframe: 'aspect-video w-full'
+  }}
+/>
+```
+
+The block automatically passes optixFlowConfig to the Markdown component, which shares it via context with all Image components.

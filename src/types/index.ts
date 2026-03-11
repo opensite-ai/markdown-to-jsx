@@ -5,6 +5,7 @@
 export type {
   OverrideMap,
   MarkdownStylesMap,
+  OptixFlowConfig,
   MarkdownOptions,
   MarkdownProps,
   UseMarkdownResult,

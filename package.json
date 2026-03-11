@@ -1,6 +1,6 @@
 {
   "name": "@page-speed/markdown-to-jsx",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Performance-optimized, tree-shakable React markdown renderer for DashTrack ecosystem",
   "license": "MIT",
   "private": false,

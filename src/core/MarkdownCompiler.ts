@@ -3,6 +3,7 @@ import React, { type ReactNode, type ElementType } from "react";
 import type { MarkdownOptions, MarkdownStylesMap } from "../types";
 import { getDefaultOverrides } from "../overrides/defaults";
 import { HeadingIdProvider } from "./HeadingIdContext";
+import { OptixFlowProvider } from "./OptixFlowContext";
 import { HeadingWithId } from "../overrides/heading-with-id";
 import { slugify as defaultSlugify } from "../utils/slugify";
 
@@ -102,6 +103,7 @@ export function compileMarkdown(
   const {
     overrides: customOverrides = {},
     markdownStyles = {},
+    optixFlowConfig,
     useDefaults = true,
     wrapper = "div",
     ...restOptions
@@ -146,15 +148,26 @@ export function compileMarkdown(
     ...restOptions,
   });
 
-  // Wrap in context provider if we have custom heading IDs
-  if (headingIds.size > 0) {
-    return React.createElement(
-      HeadingIdProvider,
-      { headingIds, children: compiled }
-    );
+  // Wrap in context providers if needed
+  let result: ReactNode = compiled;
+
+  // Wrap with OptixFlow context if config provided
+  if (optixFlowConfig) {
+    result = React.createElement(
+      OptixFlowProvider,
+      { config: optixFlowConfig, children: result }
+    ) as ReactNode;
   }
 
-  return compiled;
+  // Wrap with HeadingId context if custom IDs present
+  if (headingIds.size > 0) {
+    result = React.createElement(
+      HeadingIdProvider,
+      { headingIds, children: result }
+    ) as ReactNode;
+  }
+
+  return result;
 }
 
 /**

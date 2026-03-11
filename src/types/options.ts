@@ -22,6 +22,22 @@ export type OverrideMap = Record<string, ElementType>;
 export type MarkdownStylesMap = Record<string, string>;
 
 /**
+ * OptixFlow configuration for image optimization
+ * Passed through to @page-speed/img component
+ */
+export interface OptixFlowConfig {
+  quality?: number;
+  format?: string;
+  sizes?: {
+    sm?: number;
+    md?: number;
+    lg?: number;
+    full?: number;
+  };
+  [key: string]: any;
+}
+
+/**
  * Configuration options for markdown rendering
  */
 export interface MarkdownOptions extends Omit<MarkdownToJSX.Options, "overrides" | "wrapper"> {
@@ -44,6 +60,22 @@ export interface MarkdownOptions extends Omit<MarkdownToJSX.Options, "overrides"
    * ```
    */
   markdownStyles?: MarkdownStylesMap;
+
+  /**
+   * OptixFlow image optimization configuration
+   * Automatically passed to @page-speed/img component when used as override
+   *
+   * @example
+   * ```tsx
+   * <Markdown
+   *   optixFlowConfig={{ quality: 85, format: 'webp' }}
+   *   overrides={{ img: Img }}
+   * >
+   *   ![Image](url)
+   * </Markdown>
+   * ```
+   */
+  optixFlowConfig?: OptixFlowConfig;
 
   /**
    * Whether to use default ecosystem overrides

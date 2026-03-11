@@ -51,6 +51,7 @@ export function Markdown({
   className,
   overrides,
   markdownStyles,
+  optixFlowConfig,
   useDefaults = true,
   wrapper = "div",
   ...options
@@ -61,11 +62,12 @@ export function Markdown({
       compileMarkdown(children, {
         overrides,
         markdownStyles,
+        optixFlowConfig,
         useDefaults,
         wrapper,
         ...options,
       }),
-    [children, overrides, markdownStyles, useDefaults, wrapper, options]
+    [children, overrides, markdownStyles, optixFlowConfig, useDefaults, wrapper, options]
   );
 
   // Apply className if provided and wrapper is a string and result is a ReactElement

@@ -16,8 +16,8 @@ importers:
         version: 7.7.17(react@18.3.1)
     devDependencies:
       '@page-speed/img':
-        specifier: ^0.1.5
-        version: 0.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 0.4.9
+        version: 0.4.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/jest-dom':
         specifier: ^6.1.5
         version: 6.9.1
@@ -423,15 +423,22 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@page-speed/hooks@0.1.6':
-    resolution: {integrity: sha512-i5US/tPRSv19IypEYG8lhRB5R1vTi9kJNzCpZpmAZjekbkqbLYNHpclQxBUgFdxEtx62wyvTf7TghhTv6yEDiw==}
+  '@opensite/hooks@2.1.0':
+    resolution: {integrity: sha512-ATjSyaUVFAgaudNZXv2tVjjRIl4DAZUzLS4f4aqQA92V4WMMimNLgIfgzPF1/7BEMiEyMqd7vmUmnkXK+DGzdw==}
+    engines: {node: '>=18.0.0', pnpm: '>=9.0.0'}
+    peerDependencies:
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
+
+  '@page-speed/hooks@0.4.5':
+    resolution: {integrity: sha512-1i22hEg9hQ5zt9/cEcI8A1XgoihEZvLBwOnKmCp2D4vgbXu3OqvzbMBYatWbUruYZnDo0qnw8uyB7eW6mvzHzg==}
     engines: {node: '>=18.0.0', pnpm: '>=9.0.0'}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@page-speed/img@0.1.6':
-    resolution: {integrity: sha512-kNRqtBWjt6lyVtrPXrrPU3AcKZSXMJRwYVi4YAswicDG5TcqM5euXIvxIkpeTBuWDnqs6axoSzxeK4PiNg7MyA==}
+  '@page-speed/img@0.4.9':
+    resolution: {integrity: sha512-j1MtQkDvBORwRFY1JR92WQ00LlfsbeehPmAVVvJ1bAOccp1UxDflGoZ3Xq/iJWe9D2fGARc5g7beSa9VHWRk5w==}
     engines: {node: '>=18.0.0', pnpm: '>=9.0.0'}
     peerDependencies:
       react: '>=17.0.0'
@@ -2340,15 +2347,21 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@page-speed/hooks@0.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@opensite/hooks@2.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@page-speed/hooks@0.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       web-vitals: 5.1.0
 
-  '@page-speed/img@0.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@page-speed/img@0.4.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@page-speed/hooks': 0.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@opensite/hooks': 2.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@page-speed/hooks': 0.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 

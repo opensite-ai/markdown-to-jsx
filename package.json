@@ -1,8 +1,8 @@
 {
   "name": "@page-speed/markdown-to-jsx",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Performance-optimized, tree-shakable React markdown renderer for DashTrack ecosystem",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "private": false,
   "type": "module",
   "main": "dist/index.cjs",
@@ -74,7 +74,7 @@
     }
   },
   "devDependencies": {
-    "@page-speed/img": "^0.1.5",
+    "@page-speed/img": "0.4.9",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@types/node": "^20.17.6",
